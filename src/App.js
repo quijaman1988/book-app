@@ -4,7 +4,7 @@ import CurrentlyReading from './CurrentlyReading'
 import WantToRead from './WantToRead'
 import Read from './Read'
 import * as BooksAPI from './utils/BooksAPI'
-
+import { Route } from 'react-router-dom';
 import './App.css'
 
 class App extends React.Component {
@@ -22,16 +22,24 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />
-        <CurrentlyReading
-          books={this.state.books}
-        />
-        <WantToRead
-          books={this.state.books}
-        />
-        <Read
-          books={this.state.books}
-        />
+        <Route exact path="/" render={ () => (
+          <div>
+            <Header />
+            <CurrentlyReading
+            books={this.state.books}
+            />
+            <WantToRead
+            books={this.state.books}
+            />
+            <Read
+            books={this.state.books}
+            />
+          </div>
+        )} />
+
+        <Route exact path="/search" render={ () => (
+          <h1>Yo</h1>
+        )} />
       </div>
     )
 
