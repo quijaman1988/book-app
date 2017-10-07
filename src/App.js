@@ -1,6 +1,8 @@
 import React from 'react'
 import Header from './Header'
 import CurrentlyReading from './CurrentlyReading'
+import WantToRead from './WantToRead'
+import Read from './Read'
 import * as BooksAPI from './utils/BooksAPI'
 
 import './App.css'
@@ -23,6 +25,8 @@ class App extends React.Component {
       <div>
         <Header />
         <CurrentlyReading />
+        <WantToRead />
+        <Read />
       </div>
     )
 
