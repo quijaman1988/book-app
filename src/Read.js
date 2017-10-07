@@ -1,5 +1,6 @@
 import React ,{Component} from 'react'
 import './App.css'
+import { Link } from 'react-router-dom';
 
 class Read extends Component {
   render () {
@@ -32,6 +33,11 @@ class Read extends Component {
             ))}
             </ol>
           </div>
+        </div>
+        <div className="open-search">
+          <Link to='/search'>
+          Add Contact
+          </Link>
         </div>
 
       </div>

@@ -41,8 +41,6 @@ class App extends React.Component {
 
         <Route exact path="/search" render={ () => (
           <div>
-          <Header
-          headerTitle='Search Books'/>
           <Search
             books={this.state.books}
           />
