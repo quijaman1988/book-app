@@ -16,7 +16,6 @@ class App extends React.Component {
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books: books})
-      console.log(this.state.books)
     })
   }
 
@@ -24,7 +23,9 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <CurrentlyReading />
+        <CurrentlyReading
+          books={this.state.books}
+        />
         <WantToRead />
         <Read />
       </div>
