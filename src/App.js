@@ -3,6 +3,7 @@ import Header from './Header'
 import CurrentlyReading from './CurrentlyReading'
 import WantToRead from './WantToRead'
 import Read from './Read'
+import Search from './Search'
 import * as BooksAPI from './utils/BooksAPI'
 import { Route } from 'react-router-dom';
 import './App.css'
@@ -24,7 +25,8 @@ class App extends React.Component {
       <div>
         <Route exact path="/" render={ () => (
           <div>
-            <Header />
+            <Header
+            headerTitle='My Reads'/>
             <CurrentlyReading
             books={this.state.books}
             />
@@ -38,7 +40,13 @@ class App extends React.Component {
         )} />
 
         <Route exact path="/search" render={ () => (
-          <h1>Yo</h1>
+          <div>
+          <Header
+          headerTitle='Search Books'/>
+          <Search
+            books={this.state.books}
+          />
+          </div>
         )} />
       </div>
     )

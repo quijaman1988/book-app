@@ -1,10 +1,9 @@
 import React ,{Component} from 'react'
 import './App.css'
 
-class CurrentlyReading extends Component {
+class Read extends Component {
   render () {
-    const {books}  = this.props
-    console.log(books)
+    const { books } = this.props;
     return (
       <div>
         <div className="bookshelf">
@@ -37,4 +36,4 @@ class CurrentlyReading extends Component {
   }
 }
 
-export default CurrentlyReading
+export default Read
