@@ -26,8 +26,12 @@ class App extends React.Component {
         <CurrentlyReading
           books={this.state.books}
         />
-        <WantToRead />
-        <Read />
+        <WantToRead
+          books={this.state.books}
+        />
+        <Read
+          books={this.state.books}
+        />
       </div>
     )
 
