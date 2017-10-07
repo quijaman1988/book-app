@@ -2,8 +2,13 @@ import React ,{Component} from 'react'
 import './App.css'
 
 class CurrentlyReading extends Component {
+
+
+
   render () {
     const {books}  = this.props
+    let currentlyReading
+    currentlyReading =books.filter( (book) => book.shelf === "currentlyReading" )
     console.log(books)
     return (
       <div>
@@ -11,7 +16,7 @@ class CurrentlyReading extends Component {
           <h2 className="bookshelf-title">Currently Reading</h2>
           <div className="bookshelf-books">
             <ol className="books-grid">
-            {books.map((book) => (
+            {currentlyReading.map((book) => (
               <li key={book.id}>
                 <div className="book">
                   <div className="book-top">

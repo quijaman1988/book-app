@@ -4,13 +4,15 @@ import './App.css'
 class Read extends Component {
   render () {
     const {books} = this.props
+    let read
+    read =books.filter( (book) => book.shelf === "read" )
     return (
       <div>
         <div className="bookshelf">
           <h2 className="bookshelf-title">Read</h2>
           <div className="bookshelf-books">
             <ol className="books-grid">
-            {books.map((book) => (
+            {read.map((book) => (
               <li key={book.id}>
                 <div className="book">
                   <div className="book-top">

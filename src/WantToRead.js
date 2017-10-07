@@ -4,14 +4,16 @@ import './App.css'
 class WantToRead extends Component {
   render () {
     const {books} = this.props
-          console.log(books)
+    let wantToRead
+    wantToRead =books.filter( (book) => book.shelf === "wantToRead" )
+    console.log(books)
     return (
       <div>
         <div className="bookshelf">
           <h2 className="bookshelf-title">Want to Read</h2>
           <div className="bookshelf-books">
             <ol className="books-grid">
-            {books.map((book) => (
+            {wantToRead.map((book) => (
               <li key={book.id}>
                 <div className="book">
                   <div className="book-top">
