@@ -44,7 +44,7 @@ updateQuery = (query) => {
           </div>
         </div>
         <SearchResults
-        results={this.state.results}/>
+        results={this.state.results} />
       </div>
     )
   }

@@ -7,9 +7,11 @@ class SearchResults extends Component {
     results:[]
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(propstoReceived) {
+
+      console.log(propstoReceived)
      this.setState({
-       results: nextProps.results
+       results: propstoReceived.results
      });
    }
 
@@ -21,6 +23,7 @@ class SearchResults extends Component {
       <br/>
       <br/>
       <br/>
+      {results.length > 0 && (
       <ol className="books-grid">
         {results.map((book) => (
           <li key={book.id}>
@@ -41,6 +44,7 @@ class SearchResults extends Component {
           </li>
         ))}
       </ol>
+            )}
     </div>
     )
   }

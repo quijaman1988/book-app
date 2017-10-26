@@ -19,6 +19,20 @@ class App extends React.Component {
     })
   }
 
+  updateBook = (event, id) => {
+    if (event.target.value === 'none') {
+      return;
+    }
+    let tempBooks = this.state.books
+    for (var key in tempBooks) {
+      if (tempBooks[key].id === id) {
+        tempBooks[key].shelf = event.target.value
+        continue
+      }
+      this.setState({books : tempBooks})
+    }
+}
+
   render() {
     return (
       <div>
@@ -28,12 +42,15 @@ class App extends React.Component {
             headerTitle='My Reads'/>
             <CurrentlyReading
             books={this.state.books}
+            updateBook={this.updateBook}
             />
             <WantToRead
             books={this.state.books}
+            updateBook={this.updateBook}
             />
             <Read
             books={this.state.books}
+            updateBook={this.updateBook}
             />
           </div>
         )} />

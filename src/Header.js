@@ -5,7 +5,6 @@ class Header extends Component {
 
   render() {
     const title = this.props
-    console.log(title)
     return (
       <div className="list-books-title">
         <h1>{title.headerTitle}</h1>

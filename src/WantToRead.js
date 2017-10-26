@@ -3,10 +3,9 @@ import './App.css'
 
 class WantToRead extends Component {
   render () {
-    const {books} = this.props
+    const {books, updateBook} = this.props
     let wantToRead
     wantToRead =books.filter( (book) => book.shelf === "wantToRead" )
-    console.log(books)
     return (
       <div>
         <div className="bookshelf">
@@ -19,10 +18,10 @@ class WantToRead extends Component {
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                     <div className="book-shelf-changer">
-                      <select>
+                      <select onChange={(e) => updateBook(e,book.id)} value={book.shelf}>
                         <option value="none" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
-                        <option value="wantToRead">Want to Read</option>
+                        <option value="wantToRead">&#10004; Want to Read</option>
                         <option value="read">Read</option>
                         <option value="none">None</option>
                       </select>

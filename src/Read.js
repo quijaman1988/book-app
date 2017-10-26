@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class Read extends Component {
   render () {
-    const {books} = this.props
+    const {books, updateBook} = this.props
     let read
     read =books.filter( (book) => book.shelf === "read" )
     return (
@@ -19,11 +19,11 @@ class Read extends Component {
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                     <div className="book-shelf-changer">
-                      <select>
+                      <select onChange={(e) => updateBook(e,book.id)} value={book.shelf}>
                         <option value="none" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
-                        <option value="read">Read</option>
+                        <option value="read">&#10004; Read</option>
                         <option value="none">None</option>
                       </select>
                     </div>
