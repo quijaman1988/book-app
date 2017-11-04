@@ -33,6 +33,25 @@ class App extends React.Component {
     }
 }
 
+addPropertyToJSON = (results) => {
+  for(var i = 0; i < results.length; i++) {
+    results[i].shelf = "none"
+  }
+  return results
+}
+
+checkforShelf = (results, books) => {
+  for(let i = 0; i < results.length; i++) {
+      for(let j = 0; j < books.length; j++) {
+        if (results[i].id === books[j].id ) {
+          results[i].shelf = books[j].shelf
+        }
+      }
+    }
+  // console.log("IN");
+  return results
+}
+
   render() {
     return (
       <div>
@@ -57,7 +76,11 @@ class App extends React.Component {
 
         <Route exact path="/search" render={ () => (
           <div>
-          <Search/>
+          <Search
+            books={this.state.books}
+            addPropertyToJSON={this.addPropertyToJSON}
+            checkforShelf={this.checkforShelf}
+          />
           </div>
         )} />
       </div>

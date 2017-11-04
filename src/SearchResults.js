@@ -9,21 +9,30 @@ class SearchResults extends Component {
 
   componentWillReceiveProps(propstoReceived) {
 
-      console.log(propstoReceived)
+      //console.log(propstoReceived)
      this.setState({
-       results: propstoReceived.results
+       results: propstoReceived.results,
      });
    }
 
+   checkForEmpty = (obj) => {
+     if (obj === "undefined") {
+       return []
+     }
+     return obj
+   }
 
-  render() {
-    const {results} = this.state
+render() {
+    let {results} = this.state
+    // const checkForEmpty = this.checkForEmpty;
+    results = this.checkForEmpty(results)
     return(
     <div>
       <br/>
       <br/>
       <br/>
-      {results.length > 0 && (
+      {results.length}
+      {results !== "undefined" && (
       <ol className="books-grid">
         {results.map((book) => (
           <li key={book.id}>
@@ -31,7 +40,7 @@ class SearchResults extends Component {
               <div className="book-top">
                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                 <div className="book-shelf-changer">
-                  <select>
+                  <select value={book.shelf}>
                     <option value="none" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
@@ -43,8 +52,12 @@ class SearchResults extends Component {
             </div>
           </li>
         ))}
+
       </ol>
             )}
+
+
+
     </div>
     )
   }

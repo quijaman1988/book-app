@@ -11,23 +11,29 @@ state = {
   }
 
 
-updateQuery = (query) => {
-  this.setState({query:query.trim()})
+updateQuery = (query, checkforShelf, addProperty, books) => {
+
+    this.setState({query:query})
     if (query !== '') {
       BooksAPI.search(query).then((results) => {
-        if(!results.length) {
+        if(results.error === 'empty query') {
           this.setState({ results: []})
         } else {
-        this.setState({ results: results})
+        results = addProperty(results)
+        this.setState({ results: checkforShelf(results,books)})
         }
-      })
-    } else {
-      this.setState({ results: []})
-    }
+      }
+    ). catch((err) => {
+      this.setState({results : []})
+    })
+  } else {
+    this.setState({results : []})
+  }
 }
 
   render () {
     const updateQuery = this.updateQuery
+    const {books, addPropertyToJSON, checkforShelf} = this.props
     const {query} = this.state
     return (
       <div>
@@ -38,13 +44,17 @@ updateQuery = (query) => {
               <input type="text"
               placeholder="Search by title or author"
               value={query}
-              onChange={(event) => updateQuery(event.target.value)}
+              onChange={(event) => updateQuery(event.target.value, checkforShelf, addPropertyToJSON, books)}
               />
             </div>
           </div>
         </div>
         <SearchResults
-        results={this.state.results} />
+          results={this.state.results}
+          booksOnShelf={books}
+          addPropertyToJSON={addPropertyToJSON}
+          checkforShelf={checkforShelf}
+        />
       </div>
     )
   }
