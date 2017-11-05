@@ -33,7 +33,7 @@ updateQuery = (query, checkforShelf, addProperty, books) => {
 
   render () {
     const updateQuery = this.updateQuery
-    const {books, addPropertyToJSON, checkforShelf} = this.props
+    const {books, addPropertyToJSON, checkforShelf, moveBookToShelf} = this.props
     const {query} = this.state
     return (
       <div>
@@ -54,6 +54,7 @@ updateQuery = (query, checkforShelf, addProperty, books) => {
           booksOnShelf={books}
           addPropertyToJSON={addPropertyToJSON}
           checkforShelf={checkforShelf}
+          moveBookToShelf={moveBookToShelf}
         />
       </div>
     )

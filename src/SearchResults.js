@@ -24,8 +24,10 @@ class SearchResults extends Component {
 
 render() {
     let {results} = this.state
-    // const checkForEmpty = this.checkForEmpty;
+    const moveBookToShelf = this.props.moveBookToShelf;
+    const books = this.props.booksOnShelf
     results = this.checkForEmpty(results)
+    console.log(results)
     return(
     <div>
       <br/>
@@ -40,7 +42,7 @@ render() {
               <div className="book-top">
                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                 <div className="book-shelf-changer">
-                  <select value={book.shelf}>
+                  <select onChange={(e) => moveBookToShelf(e,books,book)}   value={book.shelf}>
                     <option value="none" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>

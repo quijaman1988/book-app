@@ -52,6 +52,13 @@ checkforShelf = (results, books) => {
   return results
 }
 
+moveBookToShelf = (event,results,book) => {
+  book.shelf = event.target.value
+  console.log(book.shelf)
+  results.push(book)
+  // this.setState({books : results})
+}
+
   render() {
     return (
       <div>
@@ -80,6 +87,7 @@ checkforShelf = (results, books) => {
             books={this.state.books}
             addPropertyToJSON={this.addPropertyToJSON}
             checkforShelf={this.checkforShelf}
+            moveBookToShelf={this.moveBookToShelf}
           />
           </div>
         )} />
