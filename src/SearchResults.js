@@ -8,18 +8,20 @@ class SearchResults extends Component {
   }
 
   componentWillReceiveProps(propstoReceived) {
-
-      //console.log(propstoReceived)
      this.setState({
        results: propstoReceived.results,
      });
    }
 
+   /**
+   * @description Method to check that results is not empty
+   * @param {array} obj - Results array
+   */
    checkForEmpty = (obj) => {
      if (obj === "undefined") {
-       return []
+       return [];
      }
-     return obj
+     return obj;
    }
 
 render() {
@@ -27,13 +29,11 @@ render() {
     const moveBookToShelf = this.props.moveBookToShelf;
     const books = this.props.booksOnShelf
     results = this.checkForEmpty(results)
-    console.log(results)
     return(
     <div>
       <br/>
       <br/>
       <br/>
-      {results.length}
       {results !== "undefined" && (
       <ol className="books-grid">
         {results.map((book) => (
@@ -57,9 +57,6 @@ render() {
 
       </ol>
             )}
-
-
-
     </div>
     )
   }

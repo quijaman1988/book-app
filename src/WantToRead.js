@@ -3,9 +3,9 @@ import './App.css'
 
 class WantToRead extends Component {
   render () {
-    const {books, updateBook} = this.props
-    let wantToRead
-    wantToRead =books.filter( (book) => book.shelf === "wantToRead" )
+    const {books, updateBook} = this.props;
+    let wantToRead;
+    wantToRead =books.filter( (book) => book.shelf === "wantToRead" );
     return (
       <div>
         <div className="bookshelf">

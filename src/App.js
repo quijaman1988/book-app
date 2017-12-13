@@ -13,50 +13,70 @@ class App extends React.Component {
     books:[]
   }
 
+  /**
+  * @description Ajax call to obtain all books
+  */
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({ books: books})
+      this.setState({ books: books});
     })
   }
 
+  /**
+  * @description Method to change book between shelves
+  * @param {event} event - The shelve to to which the book is going to be moved. Could be none
+  * @param {string} id - Id of the book
+  */
   updateBook = (event, id) => {
     if (event.target.value === 'none') {
       return;
     }
-    let tempBooks = this.state.books
+    let tempBooks = this.state.books;
     for (var key in tempBooks) {
       if (tempBooks[key].id === id) {
-        tempBooks[key].shelf = event.target.value
-        continue
+        tempBooks[key].shelf = event.target.value;
+        continue;
       }
-      this.setState({books : tempBooks})
+      this.setState({books : tempBooks});
     }
 }
 
+/**
+* @description Method to add 'shelf property to results JSON obtained in search'
+* @param {array} results -Results array obatined in search
+*/
 addPropertyToJSON = (results) => {
   for(var i = 0; i < results.length; i++) {
-    results[i].shelf = "none"
+    results[i].shelf = "none";
   }
-  return results
+  return results;
 }
 
+/**
+* @description Method to check if a book that came up in the search exists in the shelf
+* @param {array} results - Search results
+* @param {string} books - Books in the shelf
+*/
 checkforShelf = (results, books) => {
   for(let i = 0; i < results.length; i++) {
       for(let j = 0; j < books.length; j++) {
         if (results[i].id === books[j].id ) {
-          results[i].shelf = books[j].shelf
+          results[i].shelf = books[j].shelf;
         }
       }
     }
-  // console.log("IN");
-  return results
+  return results;
 }
 
+/**
+* @description Method to move a book from search to shelf
+* @param {event} events - The shelve to to which the book is going to be moved. Could be none
+* @param {array} results - Search results
+* @param {string} books - Books in the shelf
+*/
 moveBookToShelf = (event,results,book) => {
-  book.shelf = event.target.value
-  console.log(book.shelf)
-  results.push(book)
-  // this.setState({books : results})
+  book.shelf = event.target.value;
+  results.push(book);
 }
 
   render() {

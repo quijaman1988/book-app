@@ -10,24 +10,32 @@ state = {
     results:[]
   }
 
-
+  /**
+  * @description Method to make an AJAX call to the Book API as soon as the user types
+  * in the search bar. We add the shelf property to the results and check if the books
+  * are already in the shelf
+  * @param {string} query - Query typed by the user in the search bar
+  * @param {method} checkforShelf - Method to check if the books is already in the booksOnShelf
+  * @param {method} addProperty - Method add shelf property to results json
+  * @param {array} books - Array of JSONs containing original books in the shelves
+  */
 updateQuery = (query, checkforShelf, addProperty, books) => {
 
     this.setState({query:query})
     if (query !== '') {
       BooksAPI.search(query).then((results) => {
         if(results.error === 'empty query') {
-          this.setState({ results: []})
+          this.setState({ results: []});
         } else {
-        results = addProperty(results)
-        this.setState({ results: checkforShelf(results,books)})
+        results = addProperty(results);
+        this.setState({ results: checkforShelf(results,books)});
         }
       }
-    ). catch((err) => {
-      this.setState({results : []})
+    ).catch((err) => {
+      this.setState({results : []});
     })
   } else {
-    this.setState({results : []})
+    this.setState({results : []});
   }
 }
 

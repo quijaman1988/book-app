@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 class Read extends Component {
   render () {
-    const {books, updateBook} = this.props
-    let read
-    read =books.filter( (book) => book.shelf === "read" )
+    const {books, updateBook} = this.props;
+    let read;
+    read =books.filter( (book) => book.shelf === "read" );
     return (
       <div>
         <div className="bookshelf">

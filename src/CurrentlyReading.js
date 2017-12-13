@@ -3,12 +3,10 @@ import './App.css'
 
 class CurrentlyReading extends Component {
 
-
-
   render () {
-    const {books, updateBook}  = this.props
-    let currentlyReading
-    currentlyReading =books.filter( (book) => book.shelf === "currentlyReading" )
+    const {books, updateBook} = this.props;
+    let currentlyReading;
+    currentlyReading =books.filter( (book) => book.shelf === "currentlyReading" );
     return (
       <div>
         <div className="bookshelf">
