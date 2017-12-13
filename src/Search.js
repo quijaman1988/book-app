@@ -3,8 +3,15 @@ import './App.css'
 import SearchResults from './SearchResults'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './utils/BooksAPI'
+import PropTypes from 'prop-types'
 
-class Read extends Component {
+class Search extends Component {
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    addPropertyToJSON: PropTypes.func.isRequired,
+    checkforShelf: PropTypes.func.isRequired,
+    moveBookToShelf: PropTypes.func.isRequired
+  }
 state = {
     query:'',
     results:[]
@@ -69,4 +76,4 @@ updateQuery = (query, checkforShelf, addProperty, books) => {
   }
 }
 
-export default Read
+export default Search

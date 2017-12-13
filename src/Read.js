@@ -1,8 +1,13 @@
 import React ,{Component} from 'react'
 import './App.css'
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'
 
 class Read extends Component {
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    updateBook: PropTypes.func.isRequired
+  }
   render () {
     const {books, updateBook} = this.props;
     let read;

@@ -1,8 +1,15 @@
 import React ,{Component} from 'react'
 import './App.css'
+import PropTypes from 'prop-types'
 
 class SearchResults extends Component {
-
+  static propTypes = {
+    results: PropTypes.array.isRequired,
+    booksOnShelf: PropTypes.array.isRequired,
+    addPropertyToJSON: PropTypes.func.isRequired,
+    checkforShelf: PropTypes.func.isRequired,
+    moveBookToShelf: PropTypes.func.isRequired,
+  }
   state= {
     results:[]
   }

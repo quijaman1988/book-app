@@ -1,7 +1,11 @@
 import React ,{Component} from 'react'
 import './App.css'
+import PropTypes from 'prop-types'
 
 class Header extends Component {
+  static propTypes = {
+    headerTitle: PropTypes.string.isRequired
+  }
 
   render() {
     const title = this.props;

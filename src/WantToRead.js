@@ -1,7 +1,12 @@
 import React ,{Component} from 'react'
 import './App.css'
+import PropTypes from 'prop-types'
 
 class WantToRead extends Component {
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    updateBook: PropTypes.func.isRequired
+  }
   render () {
     const {books, updateBook} = this.props;
     let wantToRead;
