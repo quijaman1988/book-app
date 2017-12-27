@@ -39,6 +39,7 @@ updateQuery = (query, checkforShelf, addProperty, books) => {
         }
       }
     ).catch((err) => {
+      console.log(err)
       this.setState({results : []});
     })
   } else {

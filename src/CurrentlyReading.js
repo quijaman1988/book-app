@@ -34,6 +34,8 @@ class CurrentlyReading extends Component {
                     </div>
                   </div>
                 </div>
+                <div className="book-title">{book.title}</div>
+                <div className="book-authors">{book.authors}</div>
               </li>
             ))}
             </ol>

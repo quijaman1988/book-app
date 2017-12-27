@@ -33,15 +33,17 @@ class App extends React.Component {
       return;
     }
     let updatedBooks = [];
+
     for (var key in this.state.books) {
       if (this.state.books[key].id === id) {
         // We use immutability-helper to avoid modifying the state directly
         let tempBook = update(this.state.books[key], {shelf: {$set:event.target.value }});
+        BooksAPI.update(tempBook, event.target.value );
         updatedBooks = update(this.state.books, { $splice: [[key, 1, tempBook]] });
         continue;
       }
-      this.setState({books : updatedBooks});
     }
+    this.setState({books : updatedBooks});
 }
 
 /**
@@ -79,7 +81,9 @@ checkforShelf = (results, books) => {
 */
 moveBookToShelf = (event,results,book) => {
   book.shelf = event.target.value;
-  results.push(book);
+  const tempResults = update(results,{$push:[book]})
+  BooksAPI.update(book, event.target.value);
+  this.setState({books : tempResults})
 }
 
   render() {
