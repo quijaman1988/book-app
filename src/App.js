@@ -1,9 +1,7 @@
 import React from 'react'
 import update from 'immutability-helper';
 import Header from './Header'
-import CurrentlyReading from './CurrentlyReading'
-import WantToRead from './WantToRead'
-import Read from './Read'
+import Shelf from './Shelf'
 import Search from './Search'
 import * as BooksAPI from './utils/BooksAPI'
 import { Route } from 'react-router-dom';
@@ -83,14 +81,34 @@ moveBookToShelf = (event,results,book) => {
   this.setState({books : tempResults})
 }
 
+/**
+* @description Method to safely obtain thumbail image link. If the book does not have any it return "none"
+* @param {JSON} book - The current book that we are obatining the thumbnail link
+*/
 getThumbnailImage = (book) => {
   if (book.imageLinks !== undefined) {
     return book.imageLinks.thumbnail;
   } else {
-    return "none";
+    return "http://via.placeholder.com/128x193?text=No%20Cover";
   }
 }
 
+/**
+* @description Method to obtain the current book shelf to render appropriate title
+* @param {String} shelf - The shelf we are working with
+*/
+getShelfTitle = (shelf) => {
+  switch(shelf) {
+    case "currentlyReading":
+        return "Currently Reading";
+    case "wantToRead":
+        return "Want to Read";
+    case "read":
+        return "Read";
+    default:
+        return ""
+  }
+}
 
   render() {
     return (
@@ -99,20 +117,29 @@ getThumbnailImage = (book) => {
           <div>
             <Header
             headerTitle='My Reads'/>
-            <CurrentlyReading
+            <Shelf
             books={this.state.books}
             updateBook={this.updateBook}
             getThumbnail={this.getThumbnailImage}
+            shelf='currentlyReading'
+            getTitle={this.getShelfTitle}
+            getCheckMark={this.getCheckMark}
             />
-            <WantToRead
+            <Shelf
             books={this.state.books}
             updateBook={this.updateBook}
             getThumbnail={this.getThumbnailImage}
+            shelf='wantToRead'
+            getTitle={this.getShelfTitle}
+            getCheckMark={this.getCheckMark}
             />
-            <Read
+            <Shelf
             books={this.state.books}
             updateBook={this.updateBook}
             getThumbnail={this.getThumbnailImage}
+            shelf='read'
+            getTitle={this.getShelfTitle}
+            getCheckMark={this.getCheckMark}
             />
           </div>
         )} />
