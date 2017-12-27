@@ -1,4 +1,5 @@
 import React from 'react'
+import update from 'immutability-helper';
 import Header from './Header'
 import CurrentlyReading from './CurrentlyReading'
 import WantToRead from './WantToRead'
@@ -31,13 +32,15 @@ class App extends React.Component {
     if (event.target.value === 'none') {
       return;
     }
-    let tempBooks = this.state.books;
-    for (var key in tempBooks) {
-      if (tempBooks[key].id === id) {
-        tempBooks[key].shelf = event.target.value;
+    let updatedBooks = [];
+    for (var key in this.state.books) {
+      if (this.state.books[key].id === id) {
+        // We use immutability-helper to avoid modifying the state directly
+        let tempBook = update(this.state.books[key], {shelf: {$set:event.target.value }});
+        updatedBooks = update(this.state.books, { $splice: [[key, 1, tempBook]] });
         continue;
       }
-      this.setState({books : tempBooks});
+      this.setState({books : updatedBooks});
     }
 }
 
