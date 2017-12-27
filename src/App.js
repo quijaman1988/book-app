@@ -29,9 +29,6 @@ class App extends React.Component {
   * @param {string} id - Id of the book
   */
   updateBook = (event, id) => {
-    if (event.target.value === 'none') {
-      return;
-    }
     let updatedBooks = [];
 
     for (var key in this.state.books) {
