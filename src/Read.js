@@ -9,7 +9,7 @@ class Read extends Component {
     updateBook: PropTypes.func.isRequired
   }
   render () {
-    const {books, updateBook} = this.props;
+    const {books, updateBook, getThumbnail} = this.props;
     let read;
     read =books.filter( (book) => book.shelf === "read" );
     return (
@@ -22,7 +22,7 @@ class Read extends Component {
               <li key={book.id}>
                 <div className="book">
                   <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${getThumbnail(book)})` }}></div>
                     <div className="book-shelf-changer">
                       <select onChange={(e) => updateBook(e,book.id)} value={book.shelf}>
                         <option value="none" disabled>Move to...</option>

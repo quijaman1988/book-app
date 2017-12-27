@@ -86,6 +86,15 @@ moveBookToShelf = (event,results,book) => {
   this.setState({books : tempResults})
 }
 
+getThumbnailImage = (book) => {
+  if (book.imageLinks !== undefined) {
+    return book.imageLinks.thumbnail;
+  } else {
+    return "none";
+  }
+}
+
+
   render() {
     return (
       <div>
@@ -96,14 +105,17 @@ moveBookToShelf = (event,results,book) => {
             <CurrentlyReading
             books={this.state.books}
             updateBook={this.updateBook}
+            getThumbnail={this.getThumbnailImage}
             />
             <WantToRead
             books={this.state.books}
             updateBook={this.updateBook}
+            getThumbnail={this.getThumbnailImage}
             />
             <Read
             books={this.state.books}
             updateBook={this.updateBook}
+            getThumbnail={this.getThumbnailImage}
             />
           </div>
         )} />
@@ -115,6 +127,7 @@ moveBookToShelf = (event,results,book) => {
             addPropertyToJSON={this.addPropertyToJSON}
             checkforShelf={this.checkforShelf}
             moveBookToShelf={this.moveBookToShelf}
+            getThumbnail={this.getThumbnailImage}
           />
           </div>
         )} />

@@ -31,31 +31,24 @@ class SearchResults extends Component {
      return obj;
    }
 
-   getThumbnailImage = (book) => {
-     if (book.imageLinks !== undefined) {
-       return book.imageLinks.thumbnail;
-     } else {
-       return "none";
-     }
-   }
-
 render() {
     let {results} = this.state
     const moveBookToShelf = this.props.moveBookToShelf;
-    const books = this.props.booksOnShelf
+    const books = this.props.booksOnShelf;
+    const getThumbnail = this.props.getThumbnail;
     results = this.checkForEmpty(results)
     return(
     <div>
       <br/>
       <br/>
       <br/>
-
+      {results !== "undefined" && (
       <ol className="books-grid">
         {results.map((book) => (
           <li key={book.id}>
             <div className="book">
               <div className="book-top">
-                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.getThumbnailImage(book)})` }}></div>
+                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${getThumbnail(book)})` }}></div>
                 <div className="book-shelf-changer">
                   <select onChange={(e) => moveBookToShelf(e,books,book)}   value={book.shelf}>
                     <option value="none" disabled>Move to...</option>
@@ -73,7 +66,7 @@ render() {
         ))}
 
       </ol>
-
+      )}
     </div>
     )
   }

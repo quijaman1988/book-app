@@ -39,7 +39,6 @@ updateQuery = (query, checkforShelf, addProperty, books) => {
         }
       }
     ).catch((err) => {
-      console.log(err)
       this.setState({results : []});
     })
   } else {
@@ -49,7 +48,7 @@ updateQuery = (query, checkforShelf, addProperty, books) => {
 
   render () {
     const updateQuery = this.updateQuery
-    const {books, addPropertyToJSON, checkforShelf, moveBookToShelf} = this.props
+    const {books, addPropertyToJSON, checkforShelf, moveBookToShelf, getThumbnail} = this.props
     const {query} = this.state
     return (
       <div>
@@ -71,6 +70,7 @@ updateQuery = (query, checkforShelf, addProperty, books) => {
           addPropertyToJSON={addPropertyToJSON}
           checkforShelf={checkforShelf}
           moveBookToShelf={moveBookToShelf}
+          getThumbnail={getThumbnail}
         />
       </div>
     )
